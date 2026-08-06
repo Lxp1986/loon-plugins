@@ -1,6 +1,6 @@
 # iOS Location Spoofer — 无状态选点页（Stateless Picker）
 
-给 [`ios-location-spoofer`](https://github.com/cyberhandyman/ios-location-spoofer) 配一个**可公开共用、多人互不覆盖**的地图选点页：点地图选点 → 自动查海拔 → 一键写入本机 → `location-spoofer.js` 直接生效。
+给 [`ios-location-spoofer`](https://github.com/Lxp1986/loon-plugins/tree/main/categories/location/ios-location-spoofer) 配一个**可公开共用、多人互不覆盖**的地图选点页：点地图选点 → 自动查海拔 → 一键写入本机 → `location-spoofer.js` 直接生效。
 
 用的是这个项目**自己的模块**（`location-spoofer.js`，保留 ARPC / 海拔 / 运动状态等全部能力），只是把坐标来源从"共享服务器"换成"每台设备各自的本地存储"。
 
@@ -36,7 +36,7 @@
 
 新增文件：
 - **`location-settings.js`**（仓库根）：save 拦截脚本，把选点写进本机 `$persistentStore`。支持 Surge / Shadowrocket / Loon / Stash / Egern（`$persistentStore`）与 Quantumult X（`$prefs`）。
-- **`stateless-picker/worker/`**：选点页 worker（地图选点 / 地名搜索 / 地图链接解析 / 收藏 / 海拔自动 / 逐项复制 / PWA）。
+- **`picker/worker/`**：选点页 worker（地图选点 / 地名搜索 / 地图链接解析 / 收藏 / 海拔自动 / 逐项复制 / PWA）。
 
 ---
 
@@ -76,8 +76,8 @@
 ## 自部署选点页 worker
 
 ```bash
-git clone https://github.com/cyberhandyman/ios-location-spoofer.git
-cd ios-location-spoofer/stateless-picker/worker
+git clone https://github.com/Lxp1986/loon-plugins/tree/main/categories/location/ios-location-spoofer
+cd ios-location-spoofer/picker/worker
 npm install
 npx wrangler login       # 首次；需先在 Cloudflare 验证账号邮箱
 npm run deploy
@@ -85,7 +85,7 @@ npm run deploy
 
 无需 KV / D1 / 任何存储绑定（这正是无状态的关键）。部署后得到 `https://ios-location-picker.<你的子域名>.workers.dev`。
 
-- **免构建单文件版**：`stateless-picker/worker/single-file-worker.js` 可直接粘进 Cloudflare Dashboard 新建 Worker（内容由 `npm run build:single` 从 `src/` 自动生成）。
+- **免构建单文件版**：`picker/worker/single-file-worker.js` 可直接粘进 Cloudflare Dashboard 新建 Worker（内容由 `npm run build:single` 从 `src/` 自动生成）。
 
 坐标系：选点页的链接解析统一走 `/api/parse` 归一化为 **WGS-84**（高德/苹果(中国)/Google=GCJ-02、百度=BD-09，境外自动 no-op）。
 

@@ -63,4 +63,4 @@ bluedot.is.autonavi.com.gds.alibabadns.com
 
 ## 可选高级功能：Cloudflare Worker（最后再看）
 
-如果你需要一个公开 HTTPS 网址，可以部署 [`stateless-picker/worker`](../stateless-picker/worker)。这是可选托管页面，不是 Loon 插件运行的前置条件，也不会替代 Loon MITM 证书；默认推荐的 `beginner/` 静态页面不调用 Worker。
+如果你需要一个公开 HTTPS 网址，可以部署 [`picker/worker`](../picker/worker)。这是可选托管页面，不是 Loon 插件运行的前置条件，也不会替代 Loon MITM 证书；默认推荐的 `beginner/` 静态页面不调用 Worker。

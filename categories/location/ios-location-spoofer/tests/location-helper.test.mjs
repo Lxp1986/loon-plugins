@@ -8,7 +8,7 @@ import {
   parseCoordinateText,
   validateCoordinates,
 } from "../beginner/coordinate.js";
-import { extractFromString, parseCoords } from "../stateless-picker/worker/src/parse.js";
+import { extractFromString, parseCoords } from "../picker/worker/src/parse.js";
 
 test("beginner parser accepts latitude/longitude and enforces WGS-84 ranges", () => {
   assert.deepEqual(parseCoordinateText("22.5431, 114.0579"), { lat: 22.5431, lon: 114.0579 });
@@ -43,7 +43,7 @@ test("Loon save and clear URLs target the local interception endpoint", () => {
 test("Loon plugin keeps required scripts, hosts, append semantics, and beginner-safe wording", async () => {
   const [plugin, worker] = await Promise.all([
     readFile(new URL("../ios-location-spoofer.lnplugin", import.meta.url), "utf8"),
-    readFile(new URL("../stateless-picker/worker/src/index.js", import.meta.url), "utf8"),
+    readFile(new URL("../picker/worker/src/index.js", import.meta.url), "utf8"),
   ]);
   for (const host of ["gs-loc.apple.com", "gs-loc-cn.apple.com", "bluedot.is.autonavi.com", "bluedot.is.autonavi.com.gds.alibabadns.com"]) {
     assert.match(plugin, new RegExp(host.replaceAll(".", "\\.")));

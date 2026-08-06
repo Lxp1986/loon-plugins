@@ -9,7 +9,7 @@
 ## 三步开始
 
 1. 在 Loon 的插件中导入 [`ios-location-spoofer.lnplugin`](ios-location-spoofer.lnplugin)，或使用 raw 地址：
-   `https://raw.githubusercontent.com/Lxp1986/ios-location-spoofer/main/ios-location-spoofer.lnplugin`
+   `https://raw.githubusercontent.com/Lxp1986/loon-plugins/main/ios-location-spoofer.lnplugin`
 2. 在 Loon 开启 HTTPS 解密（MITM），生成、安装并在 iOS「证书信任设置」中信任 **Loon 自己的 CA 证书**。
 3. 保持 Loon 已连接，下载仓库后打开 [`beginner/index.html`](beginner/index.html)（也可放到任意静态托管），选择固定地点或输入纬度/经度，点击「保存到本机」。需要恢复时点击「恢复真实定位」。
 
@@ -34,7 +34,7 @@
 
 | 分类 | 插件 | GitHub | raw 直链 |
 |---|---|---|---|
-| `location/` 定位工具 | iOS Location Spoofer | [仓库目录](https://github.com/Lxp1986/ios-location-spoofer/tree/main/location) | [`ios-location-spoofer.lnplugin`](https://raw.githubusercontent.com/Lxp1986/ios-location-spoofer/main/location/ios-location-spoofer.lnplugin) |
+| `location/` 定位工具 | iOS Location Spoofer | [仓库目录](https://github.com/Lxp1986/loon-plugins/tree/main/location) | [`ios-location-spoofer.lnplugin`](https://raw.githubusercontent.com/Lxp1986/loon-plugins/main/location/ios-location-spoofer.lnplugin) |
 
 > 当前历史核心文件仍保留在仓库根目录以兼容已有导入地址；后续新增插件按 `location/`、`media/`、`ai/`、`privacy/` 等功能目录归类，并同步更新本表。新插件不会覆盖已有插件目录。
 

@@ -1,0 +1,20 @@
+#!name=iOS Location Spoofer (Stateless)
+#!desc=无状态 Loon 插件：坐标只写入本机。首次使用只需导入插件、开启 HTTPS 解密并安装/信任 Loon CA 证书，再打开 beginner 安装向导；不需要 Cloudflare。
+#!homepage=https://github.com/Lxp1986/loon-plugins/tree/main/categories/location/ios-location-spoofer
+#!icon=https://raw.githubusercontent.com/Lxp1986/loon-plugins/main/categories/location/ios-location-spoofer/assets/icon.svg
+#!input = latitude
+#!input = longitude
+#!input = altitude
+#!select = enabled,false,true
+
+# 在 Loon 插件详情页的配置项中直接填写 latitude / longitude / altitude，选择 enabled=true 即可启用。
+# 不需要打开网页，也不需要 Cloudflare；Loon 会把这些配置项写入本机 $persistentStore，脚本自动读取。
+# 恢复真实定位：把 enabled 选择为 false，或清空坐标后刷新插件。
+# %APPEND% 用于把本插件的 MITM 主机追加到现有配置，避免覆盖已有主机名。
+
+[Script]
+http-response ^https?:\/\/(?:gs-loc(?:-cn)?\.apple\.com|bluedot\.is\.autonavi\.com(?:\.gds\.alibabadns\.com)?)\/clls\/wloc(?:\?.*)?$ script-path=https://raw.githubusercontent.com/Lxp1986/loon-plugins/main/categories/location/ios-location-spoofer/scripts/location-spoofer.js, requires-body=true, binary-body-mode=true, max-size=1048576, timeout=12, tag=iOS Location Spoofer, argument=mode=response&debug=false
+http-request ^https?:\/\/gs-loc(?:-cn)?\.apple\.com\/ils-settings\/ script-path=https://raw.githubusercontent.com/Lxp1986/loon-plugins/main/categories/location/ios-location-spoofer/scripts/location-settings.js, requires-body=false, timeout=10, tag=iLS Settings
+
+[MITM]
+hostname = %APPEND% gs-loc.apple.com, gs-loc-cn.apple.com, bluedot.is.autonavi.com, bluedot.is.autonavi.com.gds.alibabadns.com

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1220">
+  <title>Loon 定位助手 · 新手安装向导</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <main class="wrap">
+    <header class="hero">
+      <p class="eyebrow">iOS Location Spoofer · MVP</p>
+      <h1>Loon 定位助手</h1>
+      <p>三步完成：导入插件 → 开启 Loon HTTPS 解密 → 选择坐标并保存到本机。</p>
+      <div class="warning"><strong>先记住：</strong>网页本身不能替代 Loon MITM 证书。必须在 Loon 中生成、安装并信任 Loon 自己的 CA 证书。</div>
+    </header>
+
+    <section class="card steps">
+      <h2>先安装一次</h2>
+      <ol>
+        <li>在 Loon 插件中导入 <a href="../ios-location-spoofer.lnplugin">ios-location-spoofer.lnplugin</a>。</li>
+        <li>打开 Loon HTTPS 解密（MITM），安装并信任 Loon 自己的 CA 证书。</li>
+        <li>保持 Loon 已连接，再用下面的坐标保存。<strong>不需要 Cloudflare。</strong></li>
+      </ol>
+      <p class="muted">如果网页按钮提示失败，先复制 URL，再在 Loon 已连接且证书已信任时重新打开它。</p>
+    </section>
+
+    <section class="card">
+      <h2>选择或输入目标位置</h2>
+      <label for="preset">固定地点</label>
+      <select id="preset">
+        <option value="">自定义经纬度</option>
+      </select>
+      <div class="grid two">
+        <label>纬度（Latitude）<input id="lat" inputmode="decimal" placeholder="例如 22.5431"></label>
+        <label>经度（Longitude）<input id="lon" inputmode="decimal" placeholder="例如 114.0579"></label>
+      </div>
+      <div class="grid three">
+        <label>海拔（米）<input id="altitude" inputmode="decimal" value="0"></label>
+        <label>水平精度<input id="hacc" inputmode="numeric" value="39"></label>
+        <label>垂直精度<input id="vacc" inputmode="numeric" value="1000"></label>
+      </div>
+      <div class="actions">
+        <button id="save" class="primary">保存到本机</button>
+        <button id="copySave" class="secondary">复制保存 URL</button>
+      </div>
+      <p id="status" class="status" role="status"></p>
+    </section>
+
+    <section class="card">
+      <h2>恢复真实定位</h2>
+      <p>这会把本机的 <code>enabled</code> 设为 false，之后模块放行真实定位。</p>
+      <div class="actions">
+        <button id="restore" class="secondary">恢复真实定位</button>
+        <button id="copyRestore" class="ghost">复制恢复 URL</button>
+      </div>
+      <p class="muted">恢复后如仍被模拟，请在 Loon 中暂时停用插件并重新打开目标 App。</p>
+    </section>
+
+    <section class="card details">
+      <h2>发生了什么？</h2>
+      <p>保存按钮访问的是固定的 <code>gs-loc.apple.com/ils-settings/save</code> 地址。Loon 的 <code>location-settings.js</code> 会在本机拦截它并写入本机存储，不会把坐标写入本项目服务器。</p>
+      <p>页面是纯静态文件，没有数据库、登录和 Cloudflare 依赖；Cloudflare Worker 只属于仓库末尾的可选高级方案。</p>
+    </section>
+  </main>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

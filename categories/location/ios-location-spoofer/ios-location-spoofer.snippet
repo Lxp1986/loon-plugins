@@ -4,8 +4,8 @@
 #!icon=https://raw.githubusercontent.com/Lxp1986/loon-plugins/main/categories/location/ios-location-spoofer/assets/icon.svg
 
 [rewrite_local]
-^https?:\/\/(?:gs-loc(?:-cn)?\.apple\.com|bluedot\.is\.autonavi\.com(?:\.gds\.alibabadns\.com)?)\/clls\/wloc(?:\?.*)?$ url script-response-body https://raw.githubusercontent.com/Lxp1986/loon-plugins/main/categories/location/ios-location-spoofer/location-spoofer-qx.js
-^https?:\/\/gs-loc(?:-cn)?\.apple\.com\/ils-settings\/ url script-echo-response https://raw.githubusercontent.com/Lxp1986/loon-plugins/main/categories/location/ios-location-spoofer/location-settings.js
+^https?:\/\/(?:gs-loc(?:-cn)?\.apple\.com|bluedot\.is\.autonavi\.com(?:\.gds\.alibabadns\.com)?)\/clls\/wloc(?:\?.*)?$ url script-response-body https://raw.githubusercontent.com/Lxp1986/loon-plugins/main/categories/location/ios-location-spoofer/scripts/location-spoofer-qx.js
+^https?:\/\/gs-loc(?:-cn)?\.apple\.com\/ils-settings\/ url script-echo-response https://raw.githubusercontent.com/Lxp1986/loon-plugins/main/categories/location/ios-location-spoofer/scripts/location-settings.js
 
 [mitm]
 hostname = gs-loc.apple.com, gs-loc-cn.apple.com, bluedot.is.autonavi.com, bluedot.is.autonavi.com.gds.alibabadns.com

@@ -23,8 +23,8 @@ http:
 
 script-providers:
   ios-location-spoofer:
-    url: https://raw.githubusercontent.com/Lxp1986/loon-plugins/main/categories/location/ios-location-spoofer/location-spoofer.js
+    url: https://raw.githubusercontent.com/Lxp1986/loon-plugins/main/categories/location/ios-location-spoofer/scripts/location-spoofer.js
     interval: 86400
   ios-location-settings:
-    url: https://raw.githubusercontent.com/Lxp1986/loon-plugins/main/categories/location/ios-location-spoofer/location-settings.js
+    url: https://raw.githubusercontent.com/Lxp1986/loon-plugins/main/categories/location/ios-location-spoofer/scripts/location-settings.js
     interval: 86400

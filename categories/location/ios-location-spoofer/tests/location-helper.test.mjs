@@ -69,3 +69,32 @@ test("beginner page is static and states the MITM certificate boundary", async (
   assert.match(coordinate, /gs-loc\.apple\.com\/ils-settings\/save/);
   assert.doesNotMatch(app, /fetch\([^)]*open-meteo|nominatim|cloudflare/i);
 });
+
+test("public documentation, icon, manifests, and raw links stay discoverable", async () => {
+  const files = [
+    "ios-location-spoofer.lnplugin",
+    "ios-location-spoofer.sgmodule",
+    "ios-location-spoofer-surge.sgmodule",
+    "ios-location-spoofer.snippet",
+  ];
+  const [guide, icon, rootReadme, ...manifests] = await Promise.all([
+    readFile(new URL("../README.md", import.meta.url), "utf8"),
+    readFile(new URL("../assets/icon.svg", import.meta.url), "utf8"),
+    readFile(new URL("../../../../README.md", import.meta.url), "utf8"),
+    ...files.map((file) => readFile(new URL(`../${file}`, import.meta.url), "utf8")),
+  ]);
+  for (const term of ["首次安装", "MITM", "CA 证书", "导入插件", "保存坐标", "恢复真实定位", "网络层定位替换", "失败排查"]) {
+    assert.match(guide, new RegExp(term));
+  }
+  assert.match(icon, /^<svg\b/);
+  assert.match(icon, /定位图钉/);
+  assert.match(icon, /波纹/);
+  const iconUrl = "https://raw.githubusercontent.com/Lxp1986/loon-plugins/main/categories/location/ios-location-spoofer/assets/icon.svg";
+  for (const manifest of manifests) {
+    assert.match(manifest, new RegExp(`#!icon=${iconUrl.replaceAll(".", "\\.")}`));
+  }
+  assert.match(guide, /raw\.githubusercontent\.com\/Lxp1986\/loon-plugins/);
+  assert.match(rootReadme, /categories\/location\/ios-location-spoofer\/README\.md/);
+  assert.match(rootReadme, /raw\.githubusercontent\.com\/Lxp1986\/loon-plugins/);
+  assert.doesNotMatch(guide, /cyberhandyman\/ios-location-spoofer/);
+});

@@ -1,6 +1,7 @@
 #!name=iOS Location Spoofer (Stateless)
 #!desc=无状态 Loon 插件：坐标只写入本机。首次使用只需导入插件、开启 HTTPS 解密并安装/信任 Loon CA 证书，再打开 beginner 安装向导；不需要 Cloudflare。
 #!homepage=https://github.com/Lxp1986/loon-plugins/tree/main/categories/location/ios-location-spoofer
+#!icon=https://raw.githubusercontent.com/Lxp1986/loon-plugins/main/categories/location/ios-location-spoofer/assets/icon.svg
 
 # 无状态版不使用 configUrl / 远程同步，也不在插件 UI 里填经纬度。
 # 选点、切换、清除全部通过选点页完成（写入本机 $persistentStore）。

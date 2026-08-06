@@ -7,7 +7,7 @@
 ## 快速入口
 
 - [直接导入 Loon 插件](https://raw.githubusercontent.com/Lxp1986/loon-plugins/main/categories/location/ios-location-spoofer/ios-location-spoofer.lnplugin)
-- [新手静态选点页](./beginner/index.html)：下载仓库后在本机打开，或部署到自己的静态站点
+- [新手静态选点页](./beginner/index.html)：可选，不是 Loon 内置流程的前置条件
 - [完整实现说明](./docs/BEGINNER.md)
 - 图标：[assets/icon.svg](./assets/icon.svg)
 
@@ -44,9 +44,33 @@ bluedot.is.autonavi.com.gds.alibabadns.com
 
 如果你的 Loon 版本导入后没有识别 `%APPEND%`，请备份配置后手动把上述主机名追加到 MITM 列表。
 
-## 保存坐标
+## 在 Loon 内填写并保存坐标（推荐）
 
-推荐使用仓库内的 `beginner/index.html`：
+这个插件已经提供 Loon 原生配置项，普通用户不需要打开网页：
+
+1. 在 Loon → 配置 → 插件中打开 `iOS Location Spoofer (Stateless)` 的详情；
+2. 点击右上角刷新，或删除旧插件后用新的 raw 链接重新导入；
+3. 在插件配置项中填写：
+   - `latitude`：纬度，例如 `23.1066`；
+   - `longitude`：经度，例如 `113.3245`；
+   - `altitude`：海拔，普通地点可填 `0`；
+   - `enabled`：选择 `true` 启用，选择 `false` 恢复真实定位；
+4. 保存并返回，保持 Loon 已连接，重新打开目标 App 并触发一次定位请求。
+
+经纬度格式是十进制度，不要把地址、地图链接或“纬度,经度”整段文字填入单个输入框。示例：
+
+```text
+latitude  = 23.1066
+longitude = 113.3245
+altitude  = 20
+enabled   = true
+```
+
+这是**完全在 Loon 内完成**的主流程，不需要 Cloudflare、网页、服务器或快捷指令。网页和 `picker/worker` 只用于地图选点、地址搜索等扩展功能。
+
+## 网页选点（可选）
+
+如果不想查经纬度，可以使用仓库内的 `beginner/index.html`：
 
 1. 打开页面，选择固定地点，或输入「纬度, 经度」；纬度范围是 `-90..90`，经度范围是 `-180..180`；
 2. 点击「保存到本机」；
@@ -54,7 +78,7 @@ bluedot.is.autonavi.com.gds.alibabadns.com
 
 保存按钮访问固定的 `https://gs-loc.apple.com/ils-settings/save?...` 地址。该请求由 Loon 在本机拦截，`location-settings.js` 只把坐标写入本机存储，不会把坐标发送到本项目服务器。
 
-如果页面按钮提示网络失败，可点击「复制保存 URL」，在同一台已连接 Loon、且 CA 已信任的设备上打开该 URL。也可以使用可选的 `picker/worker` 地图选点页；它不是插件运行的前置条件。
+如果页面按钮提示网络失败，可直接回到上面的 Loon 原生配置项填写。也可以使用可选的 `picker/worker` 地图选点页；它不是插件运行的前置条件。
 
 ## 恢复真实定位
 

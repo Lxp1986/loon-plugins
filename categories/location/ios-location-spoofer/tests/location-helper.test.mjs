@@ -55,6 +55,10 @@ test("Loon plugin keeps required scripts, hosts, append semantics, and beginner-
   assert.match(plugin, /HTTPS 解密/);
   assert.match(plugin, /CA 证书/);
   assert.match(plugin, /不需要 Cloudflare/);
+  assert.match(plugin, /#!input\s*=\s*latitude/);
+  assert.match(plugin, /#!input\s*=\s*longitude/);
+  assert.match(plugin, /#!input\s*=\s*altitude/);
+  assert.match(plugin, /#!select\s*=\s*enabled,false,true/);
   assert.match(worker, /hostname = %APPEND% gs-loc\.apple\.com/);
 });
 

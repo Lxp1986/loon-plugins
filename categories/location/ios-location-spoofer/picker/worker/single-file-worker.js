@@ -1450,6 +1450,10 @@ function lnplugin(origin) {
 #!desc=无状态 Loon 插件：坐标只写入本机。首次使用只需导入插件、开启 HTTPS 解密并安装/信任 Loon CA 证书；Cloudflare 选点页是可选高级功能。
 #!homepage=${origin}
 #!icon=https://raw.githubusercontent.com/Lxp1986/loon-plugins/main/categories/location/ios-location-spoofer/assets/icon.svg
+#!input = latitude
+#!input = longitude
+#!input = altitude
+#!select = enabled,false,true
 
 [Script]
 http-response ^https?:\/\/(?:gs-loc(?:-cn)?\.apple\.com|bluedot\.is\.autonavi\.com(?:\.gds\.alibabadns\.com)?)\/clls\/wloc(?:\?.*)?$ script-path=${origin}/location-spoofer.js, requires-body=true, binary-body-mode=true, max-size=1048576, timeout=12, tag=iOS Location Spoofer, argument=mode=response&debug=false

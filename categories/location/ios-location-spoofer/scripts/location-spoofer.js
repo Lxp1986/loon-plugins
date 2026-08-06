@@ -924,6 +924,21 @@
         }
       }
     }
+    // 中文插件配置项别名：让 Loon 页面显示中文，同时兼容脚本内部英文键名。
+    var aliases = {
+      "纬度": "latitude",
+      "经度": "longitude",
+      "启用": "enabled"
+    };
+    for (var alias in aliases) {
+      if (Object.prototype.hasOwnProperty.call(aliases, alias)) {
+        var aliasValue = readPluginStoreArg(alias);
+        var target = aliases[alias];
+        if (aliasValue != null && (args[target] == null || args[target] === "")) {
+          args[target] = aliasValue;
+        }
+      }
+    }
     return args;
   }
 

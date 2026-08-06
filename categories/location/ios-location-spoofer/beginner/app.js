@@ -22,7 +22,6 @@ preset.addEventListener("change", () => {
   if (!location) return;
   $("lat").value = location.lat;
   $("lon").value = location.lon;
-  $("altitude").value = location.altitude;
 });
 
 function setStatus(message, error = false) {
@@ -34,7 +33,6 @@ function readPoint() {
   const point = validateCoordinates($("lat").value, $("lon").value);
   return {
     ...point,
-    altitude: $("altitude").value,
     horizontalAccuracy: $("hacc").value,
     verticalAccuracy: $("vacc").value,
   };

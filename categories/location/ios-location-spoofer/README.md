@@ -53,17 +53,15 @@ bluedot.is.autonavi.com.gds.alibabadns.com
 3. 在插件配置项中填写：
    - `latitude`：纬度，例如 `23.1066`；
    - `longitude`：经度，例如 `113.3245`；
-   - `altitude`：海拔，普通地点可填 `0`；
    - `enabled`：选择 `true` 启用，选择 `false` 恢复真实定位；
 4. 保存并返回，保持 Loon 已连接，重新打开目标 App 并触发一次定位请求。
 
 经纬度格式是十进制度，不要把地址、地图链接或“纬度,经度”整段文字填入单个输入框。示例：
 
 ```text
-latitude  = 23.1066
-longitude = 113.3245
-altitude  = 20
-enabled   = true
+纬度 = 23.1066
+经度 = 113.3245
+启用 = true
 ```
 
 这是**完全在 Loon 内完成**的主流程，不需要 Cloudflare、网页、服务器或快捷指令。网页和 `picker/worker` 只用于地图选点、地址搜索等扩展功能。

@@ -6,7 +6,9 @@ Loon 插件公开集合，按功能分类维护。每个插件自带配置文件
 
 | 分类 | 插件 | GitHub | Loon raw 直链 |
 |---|---|---|---|
+| `location` | 定位助手（无状态） | [中文说明](https://github.com/Lxp1986/loon-plugins/blob/main/categories/location/ios-location-spoofer/README.md) | [导入插件](https://raw.githubusercontent.com/Lxp1986/loon-plugins/main/categories/location/ios-location-spoofer/ios-location-spoofer.lnplugin) |
 
+新用户请先阅读 [定位助手使用说明](https://github.com/Lxp1986/loon-plugins/blob/main/categories/location/ios-location-spoofer/README.md)。
 
 ## 分类规则
 

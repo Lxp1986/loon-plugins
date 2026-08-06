@@ -36,12 +36,11 @@ function numberText(value, fallback) {
   return Number.isFinite(number) ? String(number) : fallback;
 }
 
-export function buildLoonSaveUrl({ lat, lon, altitude = 0, horizontalAccuracy = 39, verticalAccuracy = 1000 }) {
+export function buildLoonSaveUrl({ lat, lon, horizontalAccuracy = 39, verticalAccuracy = 1000 }) {
   const point = validateCoordinates(lat, lon);
   const params = new URLSearchParams({
     lat: numberText(point.lat, "0"),
     lon: numberText(point.lon, "0"),
-    alt: numberText(altitude, "0"),
     hacc: numberText(horizontalAccuracy, "39"),
     vacc: numberText(verticalAccuracy, "1000"),
   });

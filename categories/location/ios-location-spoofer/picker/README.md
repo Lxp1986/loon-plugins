@@ -55,7 +55,7 @@
 
 **B. 从 GitHub raw 装（需先把你的 fork push 上去）**
 
-根目录已是无状态模块，脚本指向 `raw.githubusercontent.com/cyberhandyman/…`：
+根目录已是无状态模块，脚本指向本仓库的 `raw.githubusercontent.com/Lxp1986/loon-plugins/...`：
 - Surge / Shadowrocket / Egern：`…/main/ios-location-spoofer.sgmodule`
 - Loon：`…/main/ios-location-spoofer.lnplugin`
 - Stash：`…/main/ios-location-spoofer.stoverride`
@@ -76,8 +76,8 @@
 ## 自部署选点页 worker
 
 ```bash
-git clone https://github.com/Lxp1986/loon-plugins/tree/main/categories/location/ios-location-spoofer
-cd ios-location-spoofer/picker/worker
+git clone https://github.com/Lxp1986/loon-plugins.git
+cd loon-plugins/categories/location/ios-location-spoofer/picker/worker
 npm install
 npx wrangler login       # 首次；需先在 Cloudflare 验证账号邮箱
 npm run deploy

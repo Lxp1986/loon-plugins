@@ -928,6 +928,7 @@
     var aliases = {
       "纬度": "latitude",
       "经度": "longitude",
+      "海拔": "altitude",
       "启用": "enabled"
     };
     for (var alias in aliases) {

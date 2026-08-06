@@ -51,9 +51,10 @@ bluedot.is.autonavi.com.gds.alibabadns.com
 1. 在 Loon → 配置 → 插件中打开 `iOS Location Spoofer (Stateless)` 的详情；
 2. 点击右上角刷新，或删除旧插件后用新的 raw 链接重新导入；
 3. 在插件配置项中填写：
-   - `latitude`：纬度，例如 `23.1066`；
-   - `longitude`：经度，例如 `113.3245`；
-   - `enabled`：选择 `true` 启用，选择 `false` 恢复真实定位；
+   - `纬度`：纬度，例如 `23.1066`；
+   - `经度`：经度，例如 `113.3245`；
+   - `海拔`：海拔（米），不确定时可填 `0`；
+   - `启用`：选择 `true` 启用，选择 `false` 恢复真实定位；
 4. 保存并返回，保持 Loon 已连接，重新打开目标 App 并触发一次定位请求。
 
 经纬度格式是十进制度，不要把地址、地图链接或“纬度,经度”整段文字填入单个输入框。示例：
@@ -61,6 +62,7 @@ bluedot.is.autonavi.com.gds.alibabadns.com
 ```text
 纬度 = 23.1066
 经度 = 113.3245
+海拔 = 20
 启用 = true
 ```
 

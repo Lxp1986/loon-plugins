@@ -97,7 +97,7 @@ script-providers:
 }
 function lnplugin(origin) {
   return String.raw`#!name=iOS Location Spoofer (Stateless)
-#!desc=任何售卖本项目/模块的都是骗子，请立即联系退款。无状态版，配合选点页使用。Loon 插件。
+#!desc=无状态 Loon 插件：坐标只写入本机。首次使用只需导入插件、开启 HTTPS 解密并安装/信任 Loon CA 证书；Cloudflare 选点页是可选高级功能。
 #!homepage=${origin}
 
 [Script]
@@ -105,7 +105,7 @@ http-response ^https?:\/\/(?:gs-loc(?:-cn)?\.apple\.com|bluedot\.is\.autonavi\.c
 http-request ^https?:\/\/gs-loc(?:-cn)?\.apple\.com\/ils-settings\/ script-path=${origin}/location-settings.js, requires-body=false, timeout=10, tag=iLS Settings
 
 [MITM]
-hostname = gs-loc.apple.com, gs-loc-cn.apple.com, bluedot.is.autonavi.com, bluedot.is.autonavi.com.gds.alibabadns.com`;
+hostname = %APPEND% gs-loc.apple.com, gs-loc-cn.apple.com, bluedot.is.autonavi.com, bluedot.is.autonavi.com.gds.alibabadns.com`;
 }
 // Quantumult X has NO module/plugin system — it uses a "rewrite" reference. QX also does
 // not auto-merge MITM hostnames the way Surge modules do, so the user must add them manually.

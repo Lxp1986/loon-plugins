@@ -1,70 +1,30 @@
-# iOS Location Spoofer
+# iOS Location Spoofer · Loon 定位助手
 
-自建了worker网页，选点页也在里面：https://cyberhandyman-ioslocspo.cyberhandyman.workers.dev
+面向小白的最短路径：Loon 导入插件 → 开启 HTTPS 解密并安装/信任 Loon 自己的 CA 证书 → 打开 [beginner 安装向导](beginner/index.html) 选择地点并保存。
 
-视频教程：https://youtu.be/EspuRlKWUxc
+**不需要 Cloudflare，不需要账号，不需要数据库。** 坐标由 Loon 的 `location-settings.js` 写入当前设备本机存储；首次未保存坐标时默认放行真实定位。
 
-> 📺 YouTube：**[CyberHandyman 赛博工具人](https://www.youtube.com/@CyberHandyman/videos)** ｜ ✈️ Telegram 讨论群：**[@cyberhandymancngroup](https://t.me/cyberhandymancngroup)**
+## 三步开始
 
----
+1. 在 Loon 的插件中导入 [`ios-location-spoofer.lnplugin`](ios-location-spoofer.lnplugin)，或使用 raw 地址：
+   `https://raw.githubusercontent.com/cyberhandyman/ios-location-spoofer/main/ios-location-spoofer.lnplugin`
+2. 在 Loon 开启 HTTPS 解密（MITM），生成、安装并在 iOS「证书信任设置」中信任 **Loon 自己的 CA 证书**。
+3. 保持 Loon 已连接，下载仓库后打开 [`beginner/index.html`](beginner/index.html)（也可放到任意静态托管），选择固定地点或输入纬度/经度，点击「保存到本机」。需要恢复时点击「恢复真实定位」。
 
-## ⚠️ 免费开源项目 · 禁止售卖
+网页本身**不能替代 Loon MITM 证书**。保存 URL 只是发往 `gs-loc.apple.com/ils-settings/save` 的本机拦截请求；没有 Loon、MITM 或受信任 CA 时不会写入坐标。
 
-**如果你是通过付款来到本页面，请立即联系退款。**
-任何售卖本项目 / 模块的都是骗子。一经发现立即删库，血本无归。
+完整的新手说明与故障排查见 [`docs/BEGINNER.md`](docs/BEGINNER.md)。
 
----
+## 其他客户端与底层说明
 
-## 🚀 一键部署你自己的选点页
-
-不想用我的网址、或者想自己掌控？点下面的按钮，登录 Cloudflare 后一路下一步，
-**30 秒**就能部署一份**属于你自己的**选点页（Cloudflare 免费额度完全够用）：
-
-[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/cyberhandyman/ios-location-spoofer/tree/main/stateless-picker/worker)
-
-部署完你会拿到一个自己的网址（形如 `https://xxx.你的账号.workers.dev`）。
-它自带全部模块文件，主页里的「一键导入」按钮会**自动指向你自己的域名**，不用改任何代码。
-
-> **无状态说明**：坐标只存在**各自设备**上，服务端不存任何数据（没有绑定 KV / D1 等任何存储）。
-> 所以同一个网址可以被无数人同时使用、互不覆盖，你部署的这份也一样。
-
----
-
-## 📖 使用教程
-
-| | |
+| 客户端 | 模块 |
 |---|---|
-| 🇨🇳 小白保姆级图文教程 | [使用教程.md](使用教程.md) |
-| 🇬🇧 English guide | [使用教程.en.md](使用教程.en.md) ｜ [README.en.md](README.en.md) |
-| 📲 iOS 快捷指令（分享地图链接直接改定位） | [见使用教程末尾](使用教程.md#-ios-快捷指令分享地图链接直接改定位) |
+| Shadowrocket / Surge / Egern | [`ios-location-spoofer.sgmodule`](ios-location-spoofer.sgmodule) |
+| Loon | [`ios-location-spoofer.lnplugin`](ios-location-spoofer.lnplugin) |
+| Stash | [`ios-location-spoofer.stoverride`](ios-location-spoofer.stoverride) |
+| Quantumult X | [`ios-location-spoofer.snippet`](ios-location-spoofer.snippet) |
 
-**生效前提**：① 代理 App 已连接（开关/引擎打开、非「直连」模式）② 开启 HTTPS 解密(MITM) 并信任证书 ③ 装好对应客户端的模块。
-
-> **macOS 也能用**：Shadowrocket 需打开「强制路由」、Surge 需打开「增强模式」，让代理真正全量接管流量后，同一个模块即可生效。
-
----
-
-## 📦 模块安装地址
-
-推荐直接在[选点页首页](https://cyberhandyman-ioslocspo.cyberhandyman.workers.dev)点「一键导入」。手动添加用下面的地址：
-
-| 客户端 | 模块地址 |
-|---|---|
-| Shadowrocket / Surge / Egern | `https://raw.githubusercontent.com/cyberhandyman/ios-location-spoofer/main/ios-location-spoofer.sgmodule` |
-| Loon | `https://raw.githubusercontent.com/cyberhandyman/ios-location-spoofer/main/ios-location-spoofer.lnplugin` |
-| Stash | `https://raw.githubusercontent.com/cyberhandyman/ios-location-spoofer/main/ios-location-spoofer.stoverride` |
-| Quantumult X | `https://raw.githubusercontent.com/cyberhandyman/ios-location-spoofer/main/ios-location-spoofer.snippet` |
-
-**MITM 主机名**（如全部配置成功仍不生效，手动加入这四个域名）：
-
-```
-gs-loc.apple.com
-gs-loc-cn.apple.com
-bluedot.is.autonavi.com
-bluedot.is.autonavi.com.gds.alibabadns.com
-```
-
----
+插件保留现有 `location-spoofer.js` 的 ARPC/protobuf、海拔与运动状态处理，以及 `location-settings.js` 的本机持久化逻辑；本次 MVP 没有重写上游核心定位算法。
 
 ## 🔍 原理
 
@@ -73,6 +33,10 @@ iPhone 靠周围 Wi-Fi、基站的 BSSID 去问 Apple「这些设备在哪」，
 本模块在 **Apple 回坐标的半路上**（`gs-loc.apple.com/clls/wloc`）把响应里的坐标全部改成你指定的数字，iPhone 算出来就是你选的地方。选点页则通过 `ils-settings` 请求把坐标写进**你手机本机**的持久化存储，模块读取后生效——**全程不经过任何服务器**。
 
 ---
+
+## 可选高级功能：Cloudflare Worker
+
+仓库中的 [`stateless-picker/worker`](stateless-picker/worker) 只是可选的高级托管页面，默认安装路径不会调用它。它仍然是无状态的，不绑定 KV/D1；如果你需要公开网址或 Worker 自托管，再阅读该目录的说明并自行部署。
 
 ## 🙏 fork from 鸣谢贡献者
 

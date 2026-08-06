@@ -1,4 +1,4 @@
-#!name=iOS Location Spoofer (Stateless)
+#!name=定位助手（无状态）
 #!desc=任何售卖本项目/模块的都是骗子，请立即联系退款。无状态版：坐标写入每台设备各自的本机存储、可公开共用、多人互不覆盖。搭配选点页使用（点地图选位置 → 储存到设备）。适用于 Shadowrocket / Surge / Egern。
 #!homepage=https://github.com/Lxp1986/loon-plugins/tree/main/categories/location/ios-location-spoofer
 #!icon=https://raw.githubusercontent.com/Lxp1986/loon-plugins/main/categories/location/ios-location-spoofer/assets/icon.svg

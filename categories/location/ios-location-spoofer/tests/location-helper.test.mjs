@@ -94,8 +94,10 @@ test("public documentation, icon, manifests, and raw links stay discoverable", a
     assert.match(guide, new RegExp(term));
   }
   assert.match(icon, /^<svg\b/);
-  assert.match(icon, /定位图钉/);
-  assert.match(icon, /波纹/);
+  assert.match(icon, /定位图标/);
+  assert.match(icon, /蓝色渐变/);
+  assert.match(icon, /#F7FAFF/);
+  assert.match(icon, /#2778F5/);
   const iconUrl = "https://raw.githubusercontent.com/Lxp1986/loon-plugins/main/categories/location/ios-location-spoofer/assets/icon.svg";
   for (const manifest of manifests) {
     assert.match(manifest, new RegExp(`#!icon=${iconUrl.replaceAll(".", "\\.")}`));

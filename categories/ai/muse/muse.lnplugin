@@ -1,29 +1,31 @@
 #!name=Muse 分流规则
-#!desc=Meta Muse 客户端分流规则：聊天、实时语音、后台同步、账号体系。规则不指定策略，订阅或安装后在你自己的配置里指定策略组。
+#!desc=Meta Muse 客户端分流规则：聊天、实时语音、后台同步、账号体系。规则里的 PROXY 是占位符，安装后在插件设置里把它映射到你自己的策略组（proxy=你的策略组）。
 #!homepage=https://github.com/Lxp1986/loon-plugins/tree/main/categories/ai/muse
-#!icon=https://raw.githubusercontent.com/Lxp1986/loon-plugins/main/categories/ai/muse/assets/icon.svg
+#!icon=https://raw.githubusercontent.com/Lxp1986/loon-plugins/main/categories/ai/muse/assets/muse-icon.jpg
 
 # 一键安装：在 Loon 中打开本插件链接即可。
+# 策略组设置：插件安装时把 PROXY 映射到你自己的策略组，
+# 即在插件配置中填写 proxy=你的策略组名（Loon 插件页可直接修改）。
 # 名单来源见 README；IP 不写（Meta anycast，写死必失效）。
 
 [Rule]
-DOMAIN-SUFFIX,meta.ai
-DOMAIN-SUFFIX,muse.ai
-DOMAIN-SUFFIX,meta.com
-DOMAIN-SUFFIX,metaaivm.com
-DOMAIN-SUFFIX,hatch.one
-DOMAIN-SUFFIX,willow606.com
-DOMAIN-SUFFIX,ecto1.ai
-DOMAIN-SUFFIX,facebook.com
-DOMAIN-SUFFIX,facebook.net
-DOMAIN-SUFFIX,fbcdn.net
-DOMAIN,meta-ohttp-relay-prod.fastly-edge.com
-DOMAIN,meta-ohttp-relay-dev.fastly-edge.com
-DOMAIN,meta-ohttp-config-prod.fastly-edge.com
-DOMAIN,meta.privacy-gateway.cloudflare.com
-DOMAIN,meta.hpke-keys.privacy-gateway.cloudflare.com
-DOMAIN-SUFFIX,whatsapp.com
-DOMAIN-SUFFIX,whatsapp.net
-DOMAIN-SUFFIX,stripe.com
-DOMAIN-SUFFIX,mapbox.com
-DOMAIN-SUFFIX,maptiler.com
+DOMAIN-SUFFIX,meta.ai,PROXY
+DOMAIN-SUFFIX,muse.ai,PROXY
+DOMAIN-SUFFIX,meta.com,PROXY
+DOMAIN-SUFFIX,metaaivm.com,PROXY
+DOMAIN-SUFFIX,hatch.one,PROXY
+DOMAIN-SUFFIX,willow606.com,PROXY
+DOMAIN-SUFFIX,ecto1.ai,PROXY
+DOMAIN-SUFFIX,facebook.com,PROXY
+DOMAIN-SUFFIX,facebook.net,PROXY
+DOMAIN-SUFFIX,fbcdn.net,PROXY
+DOMAIN,meta-ohttp-relay-prod.fastly-edge.com,PROXY
+DOMAIN,meta-ohttp-relay-dev.fastly-edge.com,PROXY
+DOMAIN,meta-ohttp-config-prod.fastly-edge.com,PROXY
+DOMAIN,meta.privacy-gateway.cloudflare.com,PROXY
+DOMAIN,meta.hpke-keys.privacy-gateway.cloudflare.com,PROXY
+DOMAIN-SUFFIX,whatsapp.com,PROXY
+DOMAIN-SUFFIX,whatsapp.net,PROXY
+DOMAIN-SUFFIX,stripe.com,PROXY
+DOMAIN-SUFFIX,mapbox.com,PROXY
+DOMAIN-SUFFIX,maptiler.com,PROXY

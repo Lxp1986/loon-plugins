@@ -1,6 +1,22 @@
 # Muse 分流规则
 
-Meta Muse 客户端的分流规则：聊天、实时语音、后台同步、账号体系。规则**不指定策略**，订阅或安装后在你自己的配置里指定策略组。
+Meta Muse 客户端的分流规则：聊天、实时语音、后台同步、账号体系。
+
+## 策略组（插件安装时设置）
+
+插件规则里的 `PROXY` 是 Loon 占位符，不是写死的策略。安装插件后，在 Loon 的插件设置里把它映射到你自己的策略组：
+
+```
+proxy=你的策略组名
+```
+
+例如你的策略组叫 `美国节点`，就填 `proxy=美国节点`。不映射的话，未指定策略的规则在 Loon 插件里会默认走 DIRECT。
+
+只想用规则集订阅（自己写 RULE-SET 行指定策略）的，用这个：
+
+```
+RULE-SET,https://raw.githubusercontent.com/Lxp1986/rules-and-scripts/refs/heads/master/loon/muse/muse.list,你的策略组
+```
 
 ## 文件
 

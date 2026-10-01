@@ -35,13 +35,22 @@ test("muse.list 无重复域名", () => {
   }
 });
 
-test("muse.lnplugin [Rule] 段与 muse.list 完全一致", () => {
+test("muse.lnplugin [Rule] 段与 muse.list 对应，策略统一为 PROXY 占位符", () => {
   const plugin = readFileSync(join(dir, "muse.lnplugin"), "utf8");
   assert.match(plugin, /^#!name=/m, "缺少 #!name 头");
+  assert.match(
+    plugin,
+    /^#!icon=https:\/\/raw\.githubusercontent\.com\/Lxp1986\/loon-plugins\/main\/categories\/ai\/muse\/assets\/muse-icon\.jpg$/m,
+    "缺少 Muse 图标"
+  );
   const ruleSection = plugin.split("[Rule]")[1];
   assert.ok(ruleSection, "缺少 [Rule] 段");
   const pluginRules = ruleLines(ruleSection);
-  assert.deepEqual(pluginRules, listRules, "插件内嵌规则与 muse.list 不一致");
+  assert.deepEqual(
+    pluginRules,
+    listRules.map((r) => `${r},PROXY`),
+    "插件规则应与 muse.list 一一对应，策略统一用 PROXY 占位符（用户在安装时映射到自己的策略组）"
+  );
 });
 
 test("核心域名必须在列", () => {

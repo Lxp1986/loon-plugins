@@ -3,8 +3,10 @@
  * 改写抖音 API 请求中的定位参数，把「同城」切换到世界上任何一个城市。
  *
  * 配置方式（优先级从高到低）：
- *   1. 插件参数 $argument：city=巴黎 / city=48.8566,2.3522
- *   2. Loon 插件配置项（#!input = 城市）：Loon 会自动写入 $persistentStore，key 为「城市」
+ *   1. [Argument] 参数：插件中定义 city = input，脚本通过 $argument.city 读取
+ *      （argument=[{city}]，Loon 会把用户填写的值传给脚本）
+ *   2. 旧式字符串参数："city=巴黎"（手动填写 argument 时兼容）
+ *   3. $persistentStore：key "city" 或 "城市"（兼容旧版 #!input 写法）
  *
  * 输入接受：中文城市名 / 英文城市名 / 直接写 "纬度,经度"
  * 未配置或查不到城市 → 直接放行，不改动请求（fail-open）
@@ -138,17 +140,28 @@ function parseArgumentString(str) {
 }
 
 function readRawCity() {
-  // 1. 插件参数 $argument（字符串 "city=巴黎" 或对象 {city: "巴黎"}）
+  // 1. 新语法 [Argument]：argument=[{city}] → $argument.city（对象形式）
+  //    兼容旧式字符串 "city=巴黎" / "[巴黎]"
   try {
     if (typeof $argument !== "undefined" && $argument != null) {
-      var args = typeof $argument === "string" ? parseArgumentString($argument) : $argument;
-      if (args && args.city) return String(args.city).trim();
+      var args;
+      if (typeof $argument === "string") {
+        var s = $argument.trim().replace(/^\[(.*)\]$/, "$1");
+        args = parseArgumentString(s);
+        if (!args.city && s && s.indexOf("=") === -1) args = { city: s };
+      } else {
+        args = $argument;
+      }
+      if (args && args.city != null && String(args.city).trim() !== "") {
+        return String(args.city).trim();
+      }
     }
   } catch (e) {}
-  // 2. Loon 插件配置项 #!input = 城市（Loon 自动写入 $persistentStore）
+  // 2. $persistentStore 兜底（兼容旧版 #!input 写法）
   try {
     if (typeof $persistentStore !== "undefined" && $persistentStore.read) {
-      var v = $persistentStore.read("城市");
+      var v = $persistentStore.read("city");
+      if (v == null || String(v).trim() === "") v = $persistentStore.read("城市");
       if (v != null && String(v).trim() !== "") return String(v).trim();
     }
   } catch (e) {}

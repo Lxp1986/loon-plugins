@@ -16,6 +16,8 @@
 
 MITM 抖音 API 域名（`*.amemv.com`、`*.snssdk.com`、`*.douyin.com`），`http-request` 脚本改写请求 URL 中的 `latitude` / `longitude` 参数。服务器按该坐标返回对应城市的同城视频。
 
+插件使用 Loon 最新语法：`[Argument]` 段定义 `city` 参数，脚本通过 `$argument.city` 读取（需 Loon Build 733 及以上版本）。
+
 不碰 iOS 定位系统（和系统级改定位是两条路线），iOS 版本无关。
 
 ## 注意事项

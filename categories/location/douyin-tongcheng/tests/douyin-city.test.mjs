@@ -54,6 +54,17 @@ test("lat/lng 短参数名也能改写", () => {
   assert.ok(r.url.includes("lng=-0.1278"), r.url);
 });
 
+test("新语法 $argument 对象形式：{city: '巴黎'}", () => {
+  const r = runScript({ url: FEED, argument: { city: "巴黎" } });
+  assert.ok(r.url.includes("latitude=48.8566"), r.url);
+  assert.ok(r.url.includes("longitude=2.3522"), r.url);
+});
+
+test("新语法替换后字符串形式：[巴黎]", () => {
+  const r = runScript({ url: FEED, argument: "[巴黎]" });
+  assert.ok(r.url.includes("latitude=48.8566"), r.url);
+});
+
 test("插件参数优先于插件配置项", () => {
   const r = runScript({
     url: FEED,
@@ -97,10 +108,17 @@ test("城市库无重复（中英文）", () => {
   assert.ok(zh.size >= 60, `城市太少: ${zh.size}`);
 });
 
-test("插件文件头与 MITM 完整", () => {
+test("插件文件使用最新语法：[Argument] 定义参数", () => {
   const plugin = readFileSync(join(dir, "douyin-tongcheng.lnplugin"), "utf8");
   assert.match(plugin, /^#!name=抖音同城任意门/m);
-  assert.match(plugin, /^#!input = 城市/m);
+  assert.ok(!/^#!input/m.test(plugin), "不应再使用旧式 #!input 写法");
+  assert.match(plugin, /^\[Argument\]/m, "缺少 [Argument] 段");
+  assert.match(
+    plugin,
+    /^city = input,"",tag=城市,desc=/m,
+    "缺少 city 参数定义"
+  );
+  assert.match(plugin, /argument=\[{city}\]/, "脚本未引用 {city} 参数");
   assert.match(plugin, /douyin-icon\.jpg/m);
   assert.match(plugin, /\*\.amemv\.com/, "缺少 amemv MITM");
   assert.match(plugin, /\*\.snssdk\.com/, "缺少 snssdk MITM");

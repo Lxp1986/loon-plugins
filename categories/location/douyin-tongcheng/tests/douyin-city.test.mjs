@@ -118,7 +118,14 @@ test("插件文件使用最新语法：[Argument] 定义参数", () => {
     /^city = input,"",tag=城市,desc=/m,
     "缺少 city 参数定义"
   );
-  assert.match(plugin, /argument=\[{city}\]/, "脚本未引用 {city} 参数");
+  assert.match(plugin, /#!loon_version = 3\.5\.1\(983\)/);
+  assert.match(plugin, /request if \$\{url\} ~=/, "脚本未使用 v2 条件语法");
+  assert.match(
+    plugin,
+    /script\("https:\/\/raw\.githubusercontent\.com\/Lxp1986\/loon-plugins\/main\/categories\/location\/douyin-tongcheng\/scripts\/douyin-city\.js", \{\$\{city\}\}\)/,
+    "脚本未以对象形式引用 {city} 参数"
+  );
+  assert.match(plugin, /with tag="抖音同城改定位", timeout=10/);
   assert.match(plugin, /douyin-icon\.jpg/m);
   assert.match(plugin, /\*\.amemv\.com/, "缺少 amemv MITM");
   assert.match(plugin, /\*\.snssdk\.com/, "缺少 snssdk MITM");

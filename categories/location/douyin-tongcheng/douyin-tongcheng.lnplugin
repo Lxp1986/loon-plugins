@@ -3,6 +3,7 @@
 #!author=Lxp1986
 #!homepage=https://github.com/Lxp1986/loon-plugins/tree/main/categories/location/douyin-tongcheng
 #!icon=https://raw.githubusercontent.com/Lxp1986/loon-plugins/main/categories/location/douyin-tongcheng/assets/douyin-icon.jpg
+#!loon_version = 3.5.1(983)
 
 [Argument]
 city = input,"",tag=城市,desc=目标城市（中文名/英文名）或经纬度，如：巴黎 / paris / 48.8566,2.3522
@@ -22,7 +23,7 @@ city = input,"",tag=城市,desc=目标城市（中文名/英文名）或经纬�
 # %APPEND% 用于把本插件的 MITM 主机追加到现有配置，避免覆盖已有主机名。
 
 [Script]
-http-request ^https?:\/\/[^\/]*\.(amemv|snssdk|douyin)\.com\/ script-path=https://raw.githubusercontent.com/Lxp1986/loon-plugins/main/categories/location/douyin-tongcheng/scripts/douyin-city.js, requires-body=false, timeout=10, tag=抖音同城改定位, argument=[{city}]
+request if ${url} ~= /^https?:\/\/[^\/]*\.(amemv|snssdk|douyin)\.com\// then script("https://raw.githubusercontent.com/Lxp1986/loon-plugins/main/categories/location/douyin-tongcheng/scripts/douyin-city.js", {${city}}) with tag="抖音同城改定位", timeout=10
 
 [MITM]
 hostname = %APPEND% *.amemv.com, *.snssdk.com, *.douyin.com

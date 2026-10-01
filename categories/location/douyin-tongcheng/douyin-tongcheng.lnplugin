@@ -1,0 +1,26 @@
+#!name=抖音同城任意门
+#!desc=把抖音「同城」切换到世界上任何一个城市。在插件配置里填城市名（如：巴黎）或经纬度（如：48.8566,2.3522），脚本改写抖音接口的定位参数。需开启 HTTPS 解密并信任 Loon CA 证书。
+#!author=Lxp1986
+#!homepage=https://github.com/Lxp1986/loon-plugins/tree/main/categories/location/douyin-tongcheng
+#!icon=https://raw.githubusercontent.com/Lxp1986/loon-plugins/main/categories/location/douyin-tongcheng/assets/douyin-icon.jpg
+#!input = 城市
+
+# 用法：在 Loon 插件详情页的「城市」配置项中填写目标城市，
+# 支持中文名（巴黎）、英文名（paris），或直接写经纬度（48.8566,2.3522）。
+# 内置约 90 个世界主要城市，列表外的城市直接填经纬度即可。
+#
+# 原理：MITM 抖音 API 域名，http-request 脚本改写请求中的 latitude/longitude 参数，
+# 服务器按该坐标返回对应城市的同城视频。不碰 iOS 定位系统，iOS 版本无关。
+#
+# 注意事项：
+# - 需开启 Loon 的 HTTPS 解密并安装/信任 CA 证书，否则脚本看不到请求参数。
+# - 抖音有抓包对抗，部分版本可能证书锁定导致请求失败；如刷不出内容请先关闭插件排查。
+# - 抖音服务端会参考 IP 归属地，跨国切换时建议配合目标地区的代理节点使用，IP 与定位一致效果最好。
+# - 恢复：在「城市」配置项中清空内容，脚本自动放行原始请求。
+# %APPEND% 用于把本插件的 MITM 主机追加到现有配置，避免覆盖已有主机名。
+
+[Script]
+http-request ^https?:\/\/[^\/]*\.(amemv|snssdk|douyin)\.com\/ script-path=https://raw.githubusercontent.com/Lxp1986/loon-plugins/main/categories/location/douyin-tongcheng/scripts/douyin-city.js, requires-body=false, timeout=10, tag=抖音同城改定位
+
+[MITM]
+hostname = %APPEND% *.amemv.com, *.snssdk.com, *.douyin.com

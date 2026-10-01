@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --test categories/location/ios-location-spoofer/tests/*.test.mjs",
+    "test": "node --test categories/location/ios-location-spoofer/tests/*.test.mjs categories/ai/muse/tests/*.test.mjs",
     "check:syntax": "node categories/location/ios-location-spoofer/tests/check-syntax.mjs"
   }
 }

@@ -1,0 +1,38 @@
+# Muse（Meta）分流规则
+# 适用：Loon / Stash / Surge（RULE-SET 订阅）
+# 订阅示例（Loon 配置）：
+#   RULE-SET,https://raw.githubusercontent.com/Lxp1986/loon-plugins/main/categories/ai/muse/muse.list,PROXY
+# 把最后的 PROXY 换成你自己的策略组名
+#
+# 名单来源：iOS 客户端二进制静态拆解（含 agent/网关/VM/实时语音/账号体系域名）
+#           + Meta 官方文档域名；宽后缀写法防止 Meta 新增子域名时漏网
+# 注意：只收录 Muse App 自身流量。IP 不写——Meta 用 anycast，IP 经常变，写死必失效
+
+# ---- 核心：Agent / 网关 / 云端 VM ----
+DOMAIN-SUFFIX,meta.ai
+DOMAIN-SUFFIX,muse.ai
+DOMAIN-SUFFIX,meta.com
+DOMAIN-SUFFIX,metaaivm.com
+DOMAIN-SUFFIX,hatch.one
+DOMAIN-SUFFIX,willow606.com
+DOMAIN-SUFFIX,ecto1.ai
+
+# ---- Meta 账号 / 图谱 / CDN / 实时语音 / 崩溃上报 ----
+DOMAIN-SUFFIX,facebook.com
+DOMAIN-SUFFIX,facebook.net
+DOMAIN-SUFFIX,fbcdn.net
+
+# ---- 隐私中继 OHTTP（精确域名；Fastly / Cloudflare 是公有 CDN，不整站收录） ----
+DOMAIN,meta-ohttp-relay-prod.fastly-edge.com
+DOMAIN,meta-ohttp-relay-dev.fastly-edge.com
+DOMAIN,meta-ohttp-config-prod.fastly-edge.com
+DOMAIN,meta.privacy-gateway.cloudflare.com
+DOMAIN,meta.hpke-keys.privacy-gateway.cloudflare.com
+
+# ---- 可选：WhatsApp 通道 / 应用内支付 / 地图 ----
+# 不需要可删除这几行
+DOMAIN-SUFFIX,whatsapp.com
+DOMAIN-SUFFIX,whatsapp.net
+DOMAIN-SUFFIX,stripe.com
+DOMAIN-SUFFIX,mapbox.com
+DOMAIN-SUFFIX,maptiler.com

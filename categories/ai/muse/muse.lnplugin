@@ -1,0 +1,29 @@
+#!name=Muse 分流规则
+#!desc=Meta Muse 客户端分流规则：聊天、实时语音、后台同步、账号体系。规则不指定策略，订阅或安装后在你自己的配置里指定策略组。
+#!homepage=https://github.com/Lxp1986/loon-plugins/tree/main/categories/ai/muse
+#!icon=https://raw.githubusercontent.com/Lxp1986/loon-plugins/main/categories/ai/muse/assets/icon.svg
+
+# 一键安装：在 Loon 中打开本插件链接即可。
+# 名单来源见 README；IP 不写（Meta anycast，写死必失效）。
+
+[Rule]
+DOMAIN-SUFFIX,meta.ai
+DOMAIN-SUFFIX,muse.ai
+DOMAIN-SUFFIX,meta.com
+DOMAIN-SUFFIX,metaaivm.com
+DOMAIN-SUFFIX,hatch.one
+DOMAIN-SUFFIX,willow606.com
+DOMAIN-SUFFIX,ecto1.ai
+DOMAIN-SUFFIX,facebook.com
+DOMAIN-SUFFIX,facebook.net
+DOMAIN-SUFFIX,fbcdn.net
+DOMAIN,meta-ohttp-relay-prod.fastly-edge.com
+DOMAIN,meta-ohttp-relay-dev.fastly-edge.com
+DOMAIN,meta-ohttp-config-prod.fastly-edge.com
+DOMAIN,meta.privacy-gateway.cloudflare.com
+DOMAIN,meta.hpke-keys.privacy-gateway.cloudflare.com
+DOMAIN-SUFFIX,whatsapp.com
+DOMAIN-SUFFIX,whatsapp.net
+DOMAIN-SUFFIX,stripe.com
+DOMAIN-SUFFIX,mapbox.com
+DOMAIN-SUFFIX,maptiler.com

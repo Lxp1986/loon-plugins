@@ -22,8 +22,10 @@ RULE-SET,https://raw.githubusercontent.com/Lxp1986/rules-and-scripts/refs/heads/
 
 | 文件 | 用途 |
 |---|---|
-| `muse.list` | 规则集：`RULE-SET,https://raw.githubusercontent.com/Lxp1986/loon-plugins/main/categories/ai/muse/muse.list,你的策略组` |
-| `muse.lnplugin` | Loon 一键安装插件（内嵌同一份规则） |
+| `muse.lnplugin` | Loon 一键安装插件（规则内嵌在插件 [Rule] 段） |
+| `assets/muse-icon.jpg` | 插件图标（Muse 官方应用图标） |
+
+> 本仓库只放 Loon 插件，不放规则集。规则集订阅用 [rules-and-scripts 仓库](https://github.com/Lxp1986/rules-and-scripts) 的 `loon/muse/muse.list`。
 
 ## 名单来源
 

@@ -44,3 +44,7 @@ categories/<category>/<plugin-name>/
 ## 许可
 
 各插件的许可证和来源以其目录内说明为准。
+
+## 博客
+
+相关实战教程见 [三色风博客](https://www.lxpyll.top)。
